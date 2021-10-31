@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
+import BeerCard from './BeerCard';
 import './App.css';
 
 let PUNK_API = 'https://api.punkapi.com/v2/beers'
@@ -21,7 +23,7 @@ class App extends Component {
     //.then((data) => this.setState({
       //beers: data
     //}));
-    axios.get('https://api.punkapi.com/v2/beers')
+    axios.get(PUNK_API)
       .then( res => {
         const arrayOfBeer = res.data
         this.setState({ arrayOfBeer })
@@ -39,7 +41,7 @@ class App extends Component {
         <header className="App-header">
         <ol>{this.state.arrayOfBeer.map((beer, index) => {
           return (
-            <li key={index} >{beer.name}</li>
+            <BeerCard  key={index} name={beer.name} image_url={beer.image_url}/>
           )
         })}</ol>
         </header>
